@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 export function ModeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   return (
     <Button
@@ -14,10 +14,10 @@ export function ModeToggle({ className }: { className?: string }) {
       variant="link"
       size="icon"
       className={cn(className)}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
-      <SunIcon className="h-full w-full" />
-      <MoonIcon className="hidden h-full w-full" />
+      <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <SunIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
     </Button>
   );
 }
